@@ -165,15 +165,17 @@ IntList& IntList::operator=(const IntList& source){
         return *this;
     }
 
-    Node* iterate = head->next;
-    Node* before = head;
-    while(iterate){
-        delete before;
-        before = iterate;
-        iterate = iterate->next;
+    if(head){
+        Node* iterate = head->next;
+        Node* before = head;
+        while(iterate){
+            delete before;
+            before = iterate;
+            iterate = iterate->next;
+        }
     }
-    head = nullptr;
-    tail = nullptr;
+        head = nullptr;
+        tail = nullptr;
 
     if(source.head == nullptr && source.tail == nullptr){
         return *this;
