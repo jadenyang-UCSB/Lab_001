@@ -32,9 +32,11 @@ IntList::IntList(const IntList& source) {
 
 // destructor deletes all nodes
 IntList::~IntList() {
+
     if(!head){
         return;
     }
+
     Node* iterator = head;
     Node* iterator_dupe = head;
     while(iterator_dupe){
@@ -42,7 +44,6 @@ IntList::~IntList() {
         delete iterator;
         iterator = iterator_dupe;
     }
-    delete iterator;
     head = nullptr;
     tail = nullptr;
 }
@@ -151,6 +152,9 @@ int IntList::count() const {
 //Assignment operator should copy the list from the source
 //to this list, deleting/replacing any existing nodes
 IntList& IntList::operator=(const IntList& source){
+    if(this == &source){
+        return *this;
+    }
     Node* iterate = head->next;
     Node* before = head;
     while(iterate){
