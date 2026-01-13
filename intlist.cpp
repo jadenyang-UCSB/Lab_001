@@ -72,6 +72,7 @@ bool IntList::contains(int value) const {
         if(iterator->info == value){
             return true;
         }
+        iterator = iterator->next;
     }
     return false; // REPLACE THIS NON-SOLUTION
 }
@@ -87,6 +88,7 @@ int IntList::max() const {
         if(iterator->info > max){
             max = iterator->info;
         }
+        iterator = iterator->next;
     }
     return max; // REPLACE THIS NON-SOLUTION
 }
@@ -98,7 +100,7 @@ double IntList::average() const {
         return 0.0;
     }
 
-    return (double(max()) / double(count())); // REPLACE THIS NON-SOLUTION
+    return (double(sum()) / double(count())); // REPLACE THIS NON-SOLUTION
 }
 
 // inserts value as new node at beginning of list
@@ -155,6 +157,7 @@ IntList& IntList::operator=(const IntList& source){
     if(this == &source){
         return *this;
     }
+
     Node* iterate = head->next;
     Node* before = head;
     while(iterate){
@@ -162,11 +165,10 @@ IntList& IntList::operator=(const IntList& source){
         before = iterate;
         iterate = iterate->next;
     }
-    delete before;
     head = nullptr;
     tail = nullptr;
 
-    if(source.head == nullptr){
+    if(source.head == nullptr && source.tail == nullptr){
         return *this;
     }
 
