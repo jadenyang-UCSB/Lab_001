@@ -67,6 +67,9 @@ int IntList::sum() const {
 
 // returns true if value is in the list; false if not
 bool IntList::contains(int value) const {
+    if(!head){
+        return false;
+    }
     Node* iterator = head;
     while(iterator){
         if(iterator->info == value){
@@ -82,6 +85,7 @@ int IntList::max() const {
     if(!head){
         return 0;
     }
+
     Node* iterator = head;
     int max = iterator->info;
     while(iterator){
@@ -141,6 +145,9 @@ void IntList::push_back(int value) {
 
 // return count of values
 int IntList::count() const {
+    if(!head){
+        return 0;
+    }
     Node* iterator = head;
     int size = 0;
     while(iterator){
