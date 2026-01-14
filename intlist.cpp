@@ -14,8 +14,13 @@ IntList::IntList(const IntList& source) {
     head = nullptr;
     tail = nullptr;
 
+    if(source.head == nullptr){
+        return;
+    }
+
     head = new Node();
     head->next = nullptr;
+
 
     Node* curr_dupe = head;
     Node* source_curr = source.head;
