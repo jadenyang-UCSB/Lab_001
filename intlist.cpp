@@ -173,9 +173,10 @@ IntList& IntList::operator=(const IntList& source){
             before = iterate;
             iterate = iterate->next;
         }
+        delete before;
     }
-        head = nullptr;
-        tail = nullptr;
+    head = nullptr;
+    tail = nullptr;
 
     if(source.head == nullptr && source.tail == nullptr){
         return *this;
@@ -193,10 +194,11 @@ IntList& IntList::operator=(const IntList& source){
         iterate_head = iterate_head->next;
     }
 
-    tail = new Node();
-    tail->info = source_head->info;
+    tail = iterate_head;
+    tail->info = source_tail->info;
     tail->next = nullptr;
-    iterate_head->next = tail;
+
+    
     return *this;
     //IMPLEMENT THIS
 }
